@@ -15,5 +15,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/anvaka/ghcrawl"
+  },
+  "dependencies": {
+    "bluebird": "^2.9.25",
+    "ioredis": "^1.2.5",
+    "request-promise": "^0.4.2"
   }
 }
