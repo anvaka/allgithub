@@ -36,7 +36,7 @@ function loadMore(ctx) {
 }
 
 function save(users) {
-  var lastSavedId = redisClient.save(users);
+  var lastSavedId = redisClient.saveUsers(users);
   console.log('last saved id: ' + lastSavedId);
 
   return {
