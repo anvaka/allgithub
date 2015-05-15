@@ -27,7 +27,11 @@ function indexUsers(since) {
 }
 
 function loadMore(ctx) {
-  if (ctx.isDone) return;
+  if (ctx.isDone) {
+    console.log('All is done.');
+    redisClient.close();
+    return;
+  }
   indexUsers(ctx.lastSavedId);
 }
 
