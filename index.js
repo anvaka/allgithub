@@ -7,12 +7,12 @@
  *
  * @see https://developer.github.com/v3/users/#get-all-users
  */
-var LAST_SAVED_ID = '_lastSavedId';
 
 var githubClient = require('./lib/githubClient.js')(process.env.GH_TOKEN);
 var redisClient = require('./lib/redisClient.js')();
+var config = require('./redisNames.js');
 
-redisClient.get(LAST_SAVED_ID)
+redisClient.get(config.LAST_SAVED_ID)
   .then(greetUser)
   .then(indexUsers);
 
@@ -48,7 +48,7 @@ function loadMore(ctx) {
 
 function save(users) {
   var lastSavedId = redisClient.saveUsers(users);
-  redisClient.set(LAST_SAVED_ID, lastSavedId);
+  redisClient.set(config.LAST_SAVED_ID, lastSavedId);
 
   console.log('last saved id: ' + lastSavedId);
 

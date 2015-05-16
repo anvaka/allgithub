@@ -6,13 +6,12 @@
  * Instead we are trying to find all users who has at least N followers (N === 3
  * at the moment) using search API, and store them to JOINED_AFTER hash.
  */
-var LAST_FOLLOWER_TIME = '_lastFollowerTime';
-var JOINED_AFTER = '_joinedAfter';
 
 var githubClient = require('./lib/githubClient.js')(process.env.GH_TOKEN);
 var redisClient = require('./lib/redisClient.js')();
+var config = require('./redisNames.js');
 
-redisClient.get(LAST_FOLLOWER_TIME)
+redisClient.get(config.LAST_FOLLOWER_TIME)
   .then(greet)
   .then(indexUsers);
 
@@ -49,7 +48,7 @@ function loadMore(ctx) {
 }
 
 function save(users) {
-  redisClient.saveToSet(JOINED_AFTER, users);
+  redisClient.saveToSet(config.JOINED_AFTER, users);
   var lastSavedUser = users[users.length - 1];
   console.log('last saved user: ' + lastSavedUser);
 
@@ -60,6 +59,6 @@ function save(users) {
 }
 
 function saveLastTimeSamp(stamp) {
-  redisClient.set(LAST_FOLLOWER_TIME, stamp);
+  redisClient.set(config.LAST_FOLLOWER_TIME, stamp);
   return stamp;
 }
