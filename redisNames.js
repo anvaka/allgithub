@@ -13,7 +13,14 @@ module.exports = {
 
   /**
    * Where findUsersWithFollowers stores all users with followers, it has to be
-   * a hash, since we don't want to have duplicates from overlapping searches.
+   * a set, since we don't want to have duplicates from overlapping searches.
    */
-  JOINED_AFTER: '_joinedAfter'
+  JOINED_AFTER: '_joinedAfter',
+
+  /**
+   * The followers crawler will pop a user from JOINED_AFTER set and temporary
+   * store him or here here. So that if the programm is interrupted we can
+   * resume without loosing current user
+   */
+  BEIND_INDEXED_USER_FOLLOWERS: '_userBeingIndexedForFollowers'
 };
