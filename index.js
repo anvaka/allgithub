@@ -1,3 +1,12 @@
+/**
+ * This module simply walks through entire `/users` endpoint and stores every
+ * user into redis. Key is user name, value is a map of user properties.
+ *
+ * The map by defaul contains only user id (a number). Subsequent crawlers will
+ * fill in fields of the map (e.g. followers, starred repositories, etc).
+ *
+ * @see https://developer.github.com/v3/users/#get-all-users
+ */
 var LAST_SAVED_ID = '_lastSavedId';
 
 var githubClient = require('./lib/githubClient.js')(process.env.GH_TOKEN);
@@ -39,6 +48,8 @@ function loadMore(ctx) {
 
 function save(users) {
   var lastSavedId = redisClient.saveUsers(users);
+  redisClient.set(LAST_SAVED_ID, lastSavedId);
+
   console.log('last saved id: ' + lastSavedId);
 
   return {

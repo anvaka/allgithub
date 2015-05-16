@@ -1,3 +1,11 @@
+/**
+ * Since github has more than 14 million users, it's not feasible to make
+ * request to /users/[name]/followers api for each user (would take several
+ * months to finish under 5k requests per hour limit).
+ *
+ * Instead we are trying to find all users who has at least N followers (N === 3
+ * at the moment) using search API, and store them to JOINED_AFTER hash.
+ */
 var LAST_FOLLOWER_TIME = '_lastFollowerTime';
 var JOINED_AFTER = '_joinedAfter';
 
@@ -41,7 +49,7 @@ function loadMore(ctx) {
 }
 
 function save(users) {
-  redisClient.saveToHash(JOINED_AFTER, users);
+  redisClient.saveToSet(JOINED_AFTER, users);
   var lastSavedUser = users[users.length - 1];
   console.log('last saved user: ' + lastSavedUser);
 
