@@ -1,7 +1,9 @@
+var LAST_SAVED_ID = '_lastSavedId';
+
 var githubClient = require('./lib/githubClient.js')(process.env.GH_TOKEN);
 var redisClient = require('./lib/redisClient.js')();
 
-redisClient.getLastSavedId()
+redisClient.get(LAST_SAVED_ID)
   .then(greetUser)
   .then(indexUsers);
 

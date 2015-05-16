@@ -1,7 +1,10 @@
+var LAST_FOLLOWER_TIME = '_lastFollowerTime';
+var JOINED_AFTER = '_joinedAfter';
+
 var githubClient = require('./lib/githubClient.js')(process.env.GH_TOKEN);
 var redisClient = require('./lib/redisClient.js')();
 
-redisClient.getLastFollowerSearch()
+redisClient.get(LAST_FOLLOWER_TIME)
   .then(greet)
   .then(indexUsers);
 
@@ -38,7 +41,7 @@ function loadMore(ctx) {
 }
 
 function save(users) {
-  redisClient.saveToHash('_joinedAfter', users);
+  redisClient.saveToHash(JOINED_AFTER, users);
   var lastSavedUser = users[users.length - 1];
   console.log('last saved user: ' + lastSavedUser);
 
@@ -49,5 +52,6 @@ function save(users) {
 }
 
 function saveLastTimeSamp(stamp) {
-  return redisClient.saveLastFollowerSearch(stamp);
+  redisClient.set(LAST_FOLLOWER_TIME, stamp);
+  return stamp;
 }
