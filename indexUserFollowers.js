@@ -7,7 +7,7 @@ var githubClient = require('./lib/githubClient.js')(process.env.GH_TOKEN);
 var redisClient = require('./lib/redisClient.js')();
 var config = require('./redisNames.js');
 
-redisClient.get(config.BEIND_INDEXED_USER_FOLLOWERS)
+redisClient.get(config.BEING_INDEXED_USER_FOLLOWERS)
     .then(greet)
     .then(indexUserFollowers);
 
@@ -56,6 +56,6 @@ function startNextUser() {
 }
 
 function markUser(user) {
-  redisClient.set(config.BEIND_INDEXED_USER_FOLLOWERS, user);
+  redisClient.set(config.BEING_INDEXED_USER_FOLLOWERS, user);
   return user;
 }
