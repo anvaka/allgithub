@@ -2,9 +2,8 @@
  * This file will traverse the redis database and compse a graph of all followers
  */
 var redisClient = require('./lib/redisClient.js')();
-var graph = require('ngraph.graph')({uniqueLinkIds: false});
-var todot = require('ngraph.todot');
 
+console.log('digraph GithubFollowers {');
 redisClient.forEachUser(considerAddToGraph, quit);
 
 function considerAddToGraph(user) {
@@ -15,7 +14,7 @@ function considerAddToGraph(user) {
 }
 
 function quit() {
-  console.log(todot(graph));
+  console.log('}');
   redisClient.close();
 }
 
@@ -24,6 +23,6 @@ function addUser(user) {
   followers.forEach(addLink);
 
   function addLink(follower) {
-    graph.addLink(follower, user.login);
+    console.log('"' + follower + '"->"' + user.login +'"');
   }
 }
