@@ -9,18 +9,18 @@ module.exports = {
    * search invariant that allows us to iterate over millions of users. This
    * `created` time represents such invariant.
    */
-  LAST_FOLLOWER_TIME: '_lastFollowerTime',
+  LAST_FOLLOWER_TIME: 'lastFollowerTime2',
 
   /**
    * Where findUsersWithFollowers stores all users with followers, it has to be
    * a set, since we don't want to have duplicates from overlapping searches.
    */
-  JOINED_AFTER: '_joinedAfter',
+  JOINED_AFTER: '_joinedAfterV2',
 
   /**
    * The followers crawler will pop a user from JOINED_AFTER set and temporary
    * store him or here here. So that if the programm is interrupted we can
    * resume without loosing current user
    */
-  BEIND_INDEXED_USER_FOLLOWERS: '_userBeingIndexedForFollowers'
+  BEING_INDEXED_USER_FOLLOWERS: '_userBeingIndexedForFollowers'
 };
