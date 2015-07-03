@@ -9,7 +9,7 @@ module.exports = {
    * search invariant that allows us to iterate over millions of users. This
    * `created` time represents such invariant.
    */
-  LAST_FOLLOWER_TIME: 'lastFollowerTime2',
+  LAST_FOLLOWER_TIME: '_lastFollowerTime2',
 
   /**
    * Where findUsersWithFollowers stores all users with followers, it has to be
