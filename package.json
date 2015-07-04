@@ -19,7 +19,9 @@
   "dependencies": {
     "bluebird": "^2.9.25",
     "ioredis": "^1.2.5",
+    "ngraph.fromdot": "^0.1.3",
     "ngraph.graph": "0.0.11",
+    "ngraph.offline.layout": "^1.0.0",
     "request-promise": "^0.4.2"
   },
   "devDependencies": {
