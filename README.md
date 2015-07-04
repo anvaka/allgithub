@@ -4,7 +4,7 @@ Crawling github data
 
 # usage
 
-Prerequisites:
+## Prerequisites:
 
 1. Make sure redis is installed and running on default port
 2. [Register github token](https://help.github.com/articles/creating-an-access-token-for-command-line-use/)
@@ -52,6 +52,17 @@ Now that we have all users indexed, we can construct the graph:
 ```
 node makeFollowersGraph.js > github.dot
 ```
+
+# Layout
+
+Convert graph to binary format:
+
+```
+node --max-old-space-size=4096 ./toBinary.js
+```
+
+Then use [ngraph.native](https://github.com/anvaka/ngraph.native) for faster
+graph layout.
 
 # license
 
