@@ -1,6 +1,6 @@
-# ghcrawl
+# allgithub
 
-Crawling github data
+Crawling github data for https://github.com/anvaka/pm/
 
 # usage
 
