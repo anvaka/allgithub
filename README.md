@@ -17,11 +17,11 @@ cd ghcrawl
 npm i
 ```
 
-Now we are redy to index.
+Now we are ready to index.
 
 ## Find all users with more than 2 followers
 
-This will use search API and will go through all users on GitHub who has more
+This will use a search API and will go through all users on GitHub who have more
 than two followers.  At
 the moment there are [more than 400k users](https://github.com/search?q=followers%3A%3E2&type=Users&utf8=%E2%9C%93).
 
@@ -36,7 +36,7 @@ node findUsersWithFollowers.js
 
 ## Find all followers
 
-Now that we have all users who have more than two followers, lets index
+Now that we have all users who have more than two followers, let's index
 those followers. Bad news we will have to make one request per user.
 Good news, rate limit is 5,000 requests per hour, which gives us estimated
 amount of work: `400,000/5,000 = 80` - more than 80 hours of work:
